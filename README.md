@@ -6,9 +6,9 @@ A demo showcasing [serverless-python-individually](https://github.com/cfchou/ser
 
 
 ##Install
-- pip install virtualenv
+- `pip install virtualenv`
 - `npm install -g serverless`
-- `npm install --save serverless-python-individually`
+- `npm install serverless-python-individually`
 
 #####If you are on a Mac:
 
