@@ -1,0 +1,83 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: aws-python # NOTE: update this with your service name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+
+provider:
+  name: aws
+  runtime: python2.7
+
+# you can overwrite defaults here
+  stage: devcf1612
+  region: ap-northeast-1
+
+package:
+  individually: True  
+  exclude:
+    - '**/*'
+
+functions:
+  hello:
+      # the real handler(hello/handler.hello) is set in custom.pyIndividually.wrap:hello.
+    handler: hello/wrap.handler
+    package:
+      include:
+         - hello/**
+
+  world:
+      # the real handler(world/handler.world) is set in custom.pyIndividually.wrap:world.
+    handler: world/wrap.handler
+    package:
+      include:
+         - world/**
+
+  vanilla:
+    # this function is not touched by serverless-python-individually since no
+    # wrap:vanilla in custom.pyIndividually section.
+    handler: vanilla/handler.vanilla
+    package:
+      include:
+         - vanilla/**
+
+custom:
+  pyIndividually:
+    # A ${wrapName}.py will be generated for every function.
+    # The default filename is 'wrap.py', but you can change it if that conflicts.
+    # wrapName: wrap
+    #
+    # pip install packages to ${libSubDir} 
+    # The default dir is 'lib'.
+    # libSubDir: lib
+
+    # Note ${wrapName}.py and ${libSubDir} will sit in the same directory where the real handler is.
+
+    # Cleanup artifacts(${libSubDir}, ${wrapName}.py) created by the plugin.
+    # The default is true.
+    # cleanup: True
+#
+    # Mapping to the real handler of every function in the format:
+    # ${wrapName}:${function}: ${real_handler}
+    wrap:hello: hello/handler.hello
+    wrap:world: hello/handler.world
+    # There's no mapping for function 'vanilla', so it will be left intact by this plugin.
+ 
+    # Use a container to install aws-lambda architecture-dependent packages
+    # The default is False.
+    dockerizedPip: True
+plugins:
+    - serverless-python-individually
+
