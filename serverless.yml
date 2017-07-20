@@ -32,18 +32,19 @@ package:
 
 functions:
   hello:
-      # the real handler(hello/handler.hello) is set in custom.pyIndividually.wrap:hello.
+    # the real handler(hello/handler.hello) is set in custom.pyIndividually.wrap:hello.
     handler: hello/wrap.handler
     package:
       include:
          - hello/**
 
   world:
-      # the real handler(world/handler.world) is set in custom.pyIndividually.wrap:world.
-    handler: world/wrap.handler
+    # the real handler(mars/world/handler.world) is set in custom.pyIndividually.wrap:world.
+    # this function is placed in a subdirectory
+    handler: mars/world/wrap.handler
     package:
       include:
-         - world/**
+         - mars/world/**
 
   vanilla:
     # this function is not touched by serverless-python-individually since no
@@ -72,7 +73,7 @@ custom:
     # Mapping to the real handler of every function in the format:
     # ${wrapName}:${function}: ${real_handler}
     wrap:hello: hello/handler.hello
-    wrap:world: hello/handler.world
+    wrap:world: mars/world/handler.world
     # There's no mapping for function 'vanilla', so it will be left intact by this plugin.
  
     # Use a container to install aws-lambda architecture-dependent packages
