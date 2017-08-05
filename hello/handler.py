@@ -1,13 +1,14 @@
 import json
 import requests
 import bcrypt
+import sys
 
 def hello(event, context):
-    name = 'anonymous'
+    name = b'anonymous'
     hashed = bcrypt.hashpw(name, bcrypt.gensalt())
     body = {
-        "message": "requests {}, bcrypt {} installed. hash generated: {}".
-            format(requests.__version__, bcrypt.__version__, hashed),
+        "message": "{}, requests {}, bcrypt {} installed. hash generated: {}".
+            format(sys.version, requests.__version__, bcrypt.__version__, hashed),
         "input": event
     }
 

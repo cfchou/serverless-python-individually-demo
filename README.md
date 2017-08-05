@@ -34,14 +34,14 @@ Or explicitly run:
 // This function has a platform dependent package bcrypt
 $ sls invoke -f hello -l
 {
-    "body": "{\"input\": {}, \"message\": \"requests 2.12.3, bcrypt 3.1.1 installed. hash generated: $2b$12$gnCAOWLOJzx5Z4pudIv.9e2wkpJiTG/.P7cWc6y882QfS6IHLe7Ii\"}",
+    "body": "{\"input\": {}, \"message\": \"2.7.12 (default, Sep  1 2016, 22:14:00) \\n[GCC 4.8.3 20140911 (Red Hat 4.8.3-9)], requests 2.18.3, bcrypt 3.1.3 installed. hash generated: $2b$12$gq9jQ1.Qz/S27ZZ6lRdAPemv86sajA2CIQS05oMUocBblQ2JA2UbS\"}",
     "statusCode": 200
 }
 
-// This function is placed under a subdirectory and has a platform dependent package subprocess32.
+// This function is placed under a subdirectory.
 $ sls invoke -f world -l
 {
-    "body": "{\"input\": {}, \"message\": \"subprocess32 checks openssl version OpenSSL 1.0.1k-fips 8 Jan 2015\\n installed.\"}",
+    "body": "{\"input\": {}, \"message\": \"2.7.12 (default, Sep  1 2016, 22:14:00) \\n[GCC 4.8.3 20140911 (Red Hat 4.8.3-9)], requests 2.18.3 install ed.\"}",
     "statusCode": 200
 }
 

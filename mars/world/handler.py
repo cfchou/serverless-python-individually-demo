@@ -1,10 +1,12 @@
 import json
-import subprocess32
+import requests
+import sys
 
 def world(event, context):
-    out = subprocess32.check_output(['openssl', 'version']).decode('utf-8')
+    name = 'anonymous'
     body = {
-        "message": "subprocess32 checks openssl version {} installed.".format(out),
+        "message": "{}, requests {} installed.".
+            format(sys.version, requests.__version__),
         "input": event
     }
 
